@@ -25,17 +25,31 @@ class Tree {
     return sum;
   }
 
-  /** countEvens(): count all of the nodes in the tree with even values. */
+  /** countEvens(): count all of the nodes in the tree with even values using depth-first traversal. */
 
   countEvens() {
-
+    let count = 0;
+    const travStack = this.root ? [this.root] : [];
+    while (travStack.length){
+      let current = travStack.pop();
+      count = (current.val % 2 === 0) ? (count + 1) : count;
+      for (let child of current.children) travStack.push(child);
+    }
+    return count;
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
-
+    let count = 0;
+    const travStack = this.root ? [this.root] : [];
+    while (travStack.length){
+      let current = travStack.pop();
+      count = (current.val > lowerBound) ? (count + 1) : count;
+      for (let child of current.children) travStack.push(child);
+    }
+    return count;
   }
 }
 
